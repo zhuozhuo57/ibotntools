@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/EditTexwForTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="20dp"
+        android:hint="one two three four five six seven " />
+
+    <Button
+        android:id="@+id/EditTexwForTestButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="60dp"
+        android:text="点击edittext按钮" />
+    <!--
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="60dp"
+    android:id="@+id/stratcamerarecording"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="开始录像"
+    tools:layout_editor_absoluteX="37dp"
+    tools:layout_editor_absoluteY="16dp" />-->
+
+</LinearLayout>

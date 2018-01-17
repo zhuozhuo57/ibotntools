@@ -8,6 +8,8 @@
     android:orientation="horizontal">
 
     <Button
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="60dp"
         android:id="@+id/stratcamerarecording"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +18,8 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <Button
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="60dp"
         android:id="@+id/stopcamerarecording"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,10 +27,12 @@
         tools:layout_editor_absoluteX="37dp"
         tools:layout_editor_absoluteY="134dp" />
     <TextView
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="60dp"
         android:id="@+id/mTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="testing for "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

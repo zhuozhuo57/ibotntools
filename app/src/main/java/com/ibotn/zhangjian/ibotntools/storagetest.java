@@ -44,17 +44,17 @@ public class storagetest extends Activity{
     read_wirth_btn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(storagetest.this, "这是你第次点击了存储测试按钮", Toast.LENGTH_LONG).toString();
+
             int i;
             for(i=0;i<100;i++){
 
                 Log.d(TAG, "storagetest: "+i+"times");
-                filePath="mnt/sdcard/test/";
+                filePath="storage/sdcard/test/";
                 File sourcefile=new File(filePath+"sourcefile");
                 File targetFile=new File(filePath+"targetFile");
 
                 copyFile(sourcefile,targetFile);
-                deleteDirectory(filePath);
+               // deleteDirectory(filePath);
                 Toast.makeText(storagetest.this, "这是你第"+i+"次点击了存储测试按钮", Toast.LENGTH_LONG).toString();
             }
         }
@@ -198,13 +198,7 @@ public class storagetest extends Activity{
         //return false;
 
     }
-    public void  file_copy(){
-    }
 
-    public void file_delete(){
-
-
-    }
 
 
 

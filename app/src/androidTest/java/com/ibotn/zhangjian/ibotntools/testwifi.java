@@ -42,7 +42,7 @@ import android.widget.TextView;
 @RunWith(AndroidJUnit4.class)
 public  class testwifi  extends UiAutomatorInstrumentationTestRunner {
     Time time;
-    String filepath ="/storage/sd-ext/wifitest/";
+
     private static final String TAG ="switch_widget" ;
     UiDevice device;
     Instrumentation instrumentation;
@@ -147,7 +147,7 @@ public  class testwifi  extends UiAutomatorInstrumentationTestRunner {
         Log.d(TAG, "wifi test done"+i+"times");
     }
     public void takephotos() {
-        screenshot(filepath);
+        String filepath ="/storage/sd-ext/wifitest/";
         Date a = new Date();
         SimpleDateFormat b = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String c = b.format(a);
