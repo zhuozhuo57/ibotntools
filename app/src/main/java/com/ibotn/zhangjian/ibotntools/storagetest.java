@@ -1,11 +1,7 @@
 package com.ibotn.zhangjian.ibotntools;
 
 import android.app.Activity;
-import android.app.Application;
-import android.app.Instrumentation;
 import android.os.Bundle;
-import android.support.test.uiautomator.UiAutomatorInstrumentationTestRunner;
-import android.support.test.uiautomator.UiDevice;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,37 +24,38 @@ import java.util.List;
 */
 
 
-public class storagetest extends Activity{
+public class storagetest extends Activity {
 
 
-    private static final String TAG ="storagetest" ;
-   // private static final filePath="/mnt/sdcard/test/";
+    private static final String TAG = "storagetest";
+    // private static final filePath="/mnt/sdcard/test/";
     String filePath;
     File sourcefile;
     File targetFile;
-@Override
-    protected void onCreate(Bundle savedInstanceState){
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.storyage_tool);
-    Button read_wirth_btn =findViewById(R.id.storage);
-    read_wirth_btn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
 
-            int i;
-            for(i=0;i<100;i++){
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.storyage_tool);
+        Button read_wirth_btn = findViewById(R.id.storage);
+        read_wirth_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                Log.d(TAG, "storagetest: "+i+"times");
-                filePath="storage/sdcard/test/";
-                File sourcefile=new File(filePath+"sourcefile");
-                File targetFile=new File(filePath+"targetFile");
+                int i;
+                for (i = 0; i < 100; i++) {
 
-                copyFile(sourcefile,targetFile);
-               // deleteDirectory(filePath);
-                Toast.makeText(storagetest.this, "这是你第"+i+"次点击了存储测试按钮", Toast.LENGTH_LONG).toString();
+                    Log.d(TAG, "storagetest: " + i + "times");
+                    filePath = "storage/sdcard/test/";
+                    File sourcefile = new File(filePath + "sourcefile");
+                    File targetFile = new File(filePath + "targetFile");
+
+                    copyFile(sourcefile, targetFile);
+                    // deleteDirectory(filePath);
+                    Toast.makeText(storagetest.this, "这是你第" + i + "次点击了存储测试按钮", Toast.LENGTH_LONG).toString();
+                }
             }
-        }
-    });
+        });
 
 
     }
@@ -123,6 +120,7 @@ public class storagetest extends Activity{
             }
         }
     }
+
     public void copyFile(File sourcefile, File targetFile) {
         FileInputStream input = null;
         BufferedInputStream inbuff = null;
@@ -198,14 +196,6 @@ public class storagetest extends Activity{
         //return false;
 
     }
-
-
-
-
-
-
-
-
 
 
 }

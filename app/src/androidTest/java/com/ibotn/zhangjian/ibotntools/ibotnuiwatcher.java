@@ -1,51 +1,53 @@
 package com.ibotn.zhangjian.ibotntools;
 
 import android.app.Instrumentation;
-import android.nfc.Tag;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject;
 import android.support.test.uiautomator.UiObject2;
-import android.support.test.uiautomator.UiObjectNotFoundException;
-import android.support.test.uiautomator.UiSelector;
 import android.support.test.uiautomator.UiWatcher;
-import android.support.test.uiautomator.Until;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.crypto.spec.DESedeKeySpec;
-
+import static android.support.test.InstrumentationRegistry.getContext;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 
 /**
  * Created by zhangjian on 2017/12/26.
  */
-@RunWith( AndroidJUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class ibotnuiwatcher {
 
-    private static final String TAG ="phonecall" ;
+    private static final String TAG = "phonecall";
     UiDevice mDevice;
     Instrumentation instrumentation;
+
     @Before
-    public void setUp () {
+    public void setUp() {
 
         instrumentation = getInstrumentation();
-        mDevice= UiDevice.getInstance(instrumentation);
+        mDevice = UiDevice.getInstance(instrumentation);
 
     }
+
     @Test
-    public void testCase09() throws InterruptedException {
+    public void testcase10() throws InterruptedException {
 
         final UiObject2 ui = mDevice.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn"));
         //注册监听器
         mDevice.registerWatcher("testWatcher", new UiWatcher() {
             @Override
             public boolean checkForCondition() {
-                if(mDevice.hasObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn"))){
+                if (mDevice.hasObject(By.res("com.ibotn.ibotnlauncher", "android:id/content"))) {
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     ui.click();
                     Log.i("testWatcher", "监听器被触发了");
                     return true;
@@ -57,69 +59,70 @@ public class ibotnuiwatcher {
 
         //运行用例步骤
         //mDevice.wait(Until.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn")));
-        mDevice.waitForWindowUpdate("com.ibotn.ibotnphone",10000);
+        mDevice.waitForWindowUpdate("com.ibotn.ibotnphone", 10000);
         //mDevice.findObject(new UiSelector().resourceId("com.ibotn.ibotnphone:id/accept_call_btn"));
-      //  UiObject2 btn = mDevice.findObject(By.text("写短信"));
+        //  UiObject2 btn = mDevice.findObject(By.text("写短信"));
     /*    UiObject2 accept_call_btn=mDevice.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn"));
                 accept_call_btn.click();*/
         Thread.sleep(2000);
-        //mDevice.pressBack();
-        //mDevice.pressBack();
-        int i=0;
-       for(i=0;i<10000;i++) {
-           UiObject phonecall = mDevice.findObject((new UiSelector().resourceId("com.ibotn.ibotnphone:id/accept_call_btn")));
-           if (phonecall.exists() == true) {
-               try {
-                   phonecall.clickAndWaitForNewWindow(3000);
-                   Thread.sleep(5000);
-                   UiObject endcall = mDevice.findObject((new UiSelector().resourceId("com.ibotn.ibotnphone:id/end_call_btn")));
-                   if (endcall.exists() == true) {
-                       endcall.clickAndWaitForNewWindow(3000);
-                   }
-               } catch (UiObjectNotFoundException e) {
-                   e.printStackTrace();
-                   Log.d(TAG, "phone call checkForCondition: error ");
-               }
-           }
-           Thread.sleep(2000);
-           //mDevice.pressBack();
-           Thread.sleep(2000);
-           Log.d(TAG, "phone call checkForCondition:  "+i+"times");
-       }
+        mDevice.pressHome();
+        mDevice.pressBack();
+        int i = 0;
+        for (i = 0; i < 1000; i++) {
+            mDevice.pressHome();
+            final UiObject2 tvphone = mDevice.findObject(By.res("com.ibotn.ibotnlauncher", "com.ibotn.ibotnlauncher:id/tv_phone"));
+            mDevice.registerWatcher("tvphone", new UiWatcher() {
+                @Override
+                public boolean checkForCondition() {
+                    if (!mDevice.hasObject(By.res("com.Company.ibotn", "android:id/content")) == true) {
+                        int x;
+                        int y;
+                        x = mDevice.getDisplayHeight();
+                        y = mDevice.getDisplayWidth();
+                        mDevice.click(x / 2, y / 2);
+                        mDevice.click(x / 2, y / 2);
+                        mDevice.pressHome();
+                        Toast.makeText(getContext(), "pressHome succseful", Toast.LENGTH_LONG).toString();
+                        tvphone.click();
+                        Toast.makeText(getContext(), "tvphone click succseful", Toast.LENGTH_LONG).toString();
+
+                    }
+                    return true;
+                }
+            });
+            mDevice.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/name")).click();
+            mDevice.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/btn_dial")).click();
+            Thread.sleep(10000);
+            mDevice.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/end_call_btn")).click();
+            Log.d(TAG, "phone call " + i + "times");
+            Toast.makeText(getContext(), "phone call" + i + "times", Toast.LENGTH_LONG).toString();
+
+        }
         //重置监听器
         mDevice.resetWatcherTriggers();
-       // mDevice.wait(Until.findObject(By.text("写短信")), 2000);
-        mDevice.waitForWindowUpdate("com.ibotn.ibotnphone",10000);
-       // mDevice.pressBack();
+        // mDevice.wait(Until.findObject(By.text("写短信")), 2000);
+        mDevice.waitForWindowUpdate("com.ibotn.ibotnphone", 10000);
+        mDevice.pressBack();
         Thread.sleep(2000);
-        //mDevice.pressBack();
+        mDevice.pressBack();
         Log.i("testWatcher", "重置监听器成功");
 
         //移除监听器
         mDevice.removeWatcher("testWatcher");
         Log.i("testWatcher", "移除监听器成功");
-        mDevice.waitForWindowUpdate("com.ibotn.ibotnphone",10000);
-        //mDevice.pressBack();
+        mDevice.waitForWindowUpdate("com.ibotn.ibotnphone", 10000);
+        mDevice.pressBack();
         Thread.sleep(2000);
-        //mDevice.pressBack();
+        mDevice.pressBack();
 
     }
-/*    private  UiDevice device;
-    public  void phonetest()throws UiObjectNotFoundException{
-        UiObject2 phone=device.findObject(By.res("",""));
-        device.registerWatcher("phonecall",new UiWatcher(){
-            UiObject2 phonecal =device.findObject(By.res("",""));
-            @Override
-            public boolean checkForCondition() {
-                phonecal.hasObject(By.res("",""));
-                phonecal.clickAndWait(Until.newWindow(),4000);
 
-                return true;
-            }
-
-
-        });
-        device.removeWatcher("phonecall");
-
-    }*/
 }
+
+
+
+
+
+
+
+

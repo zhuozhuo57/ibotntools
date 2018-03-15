@@ -25,24 +25,25 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.uiautomator.Direction.RIGHT;
-
 import static java.lang.Thread.sleep;
 
 /**
  * Created by zhangjian on 2017/12/26.
  */
-@RunWith( AndroidJUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class honorphonecallscript {
 
-    private static final String TAG ="phonecall" ;
+    private static final String TAG = "phonecall";
     UiDevice mDevice;
     Instrumentation instrumentation;
+
     @Before
-    public void setUp () {
+    public void setUp() {
 
         instrumentation = getInstrumentation();
-        mDevice= UiDevice.getInstance(instrumentation);
+        mDevice = UiDevice.getInstance(instrumentation);
     }
+
     @Test
     public void testcase11() throws InterruptedException, UiObjectNotFoundException, RemoteException {
 
@@ -51,7 +52,7 @@ public class honorphonecallscript {
         mDevice.registerWatcher("testWatcher", new UiWatcher() {
             @Override
             public boolean checkForCondition() {
-                if(mDevice.hasObject(By.res("com.ibotn.phone", "com.ibotn.phone:id/slideView"))){
+                if (mDevice.hasObject(By.res("com.ibotn.phone", "com.ibotn.phone:id/slideView"))) {
                     slideView.swipe(RIGHT, 0.8f, 500);
                     Log.i("testWatcher", "监听器被触发了");
                     return true;
@@ -61,8 +62,8 @@ public class honorphonecallscript {
             }
         });
         //运行用例步骤
-        mDevice.pressHome();
-        mDevice.waitForWindowUpdate("com.huawei.android.launcher",10000);
+
+     /*   mDevice.waitForWindowUpdate("com.huawei.android.launcher",10000);
         sleep(2000);
         //mDevice.findObject(By.res("android.view.View","com.huawei.android.launcher:id/workspace"));
         UiCollection workspace=new UiCollection(new UiSelector().className("android.view.View").resourceId("com.huawei.android.launcher:id/workspace"));
@@ -75,14 +76,16 @@ public class honorphonecallscript {
         UiCollection index=new UiCollection(new UiSelector().className("android.view.View").index(1));
         index.click();
         UiObject2 X=mDevice.findObject(By.text("图库"));
-        X.click();
+        X.click();*/
 
-        int i=0;
-        for(i=0;i<1000;i++) {
-            int x1=0;
-            int x2=0;
-            int y1=0;
-            int y2=0;
+        mDevice.waitForWindowUpdate("com.yulong.android.launcher3", 10000);
+        Thread.sleep(2000);
+        int i = 0;
+        for (i = 0; i < 1000; i++) {
+            int x1 = 0;
+            int x2 = 0;
+            int y1 = 0;
+            int y2 = 0;
             UiObject content = new UiScrollable(new UiSelector().className("android.widget.FrameLayout").resourceId("android:id/content"));
             content.exists();
             //content.click();
@@ -91,27 +94,27 @@ public class honorphonecallscript {
             //rl_fragments.click();
             UiObject RelativeLayout = new UiCollection(new UiSelector().className("android.widget.RelativeLayout").index(2));
             RelativeLayout.getChildCount();
-            UiObject getChild= RelativeLayout.getChild(new UiSelector().resourceId("com.ibotn.phone:id/slideView"));
+            UiObject getChild = RelativeLayout.getChild(new UiSelector().resourceId("com.ibotn.phone:id/slideView"));
             getChild.exists();
-            Rect center =getChild.getBounds();
+            Rect center = getChild.getBounds();
 /*            r.left; //矩形左上角顶点X坐标
             r.top; //矩形左上角顶点Y坐标
             r.right; //矩形右下角顶点X坐标
             r.bottom; //矩形右下角顶点Y坐标
             r.centerX(); //矩形的中心点X坐标
             r.centerY(); //矩形的中心点Y坐标*/
-            x1=center.left;
-            x2=center.right;
-            y1=center.top;
-            y2=center.bottom;
+            x1 = center.left;
+            x2 = center.right;
+            y1 = center.top;
+            y2 = center.bottom;
             //mDevice.click()
             // mDevice.drag(x1+(x2-x1)/2,y1+(y2-y1)/2+110,x2-(x2-x1)/2,y1+(y2-y1)/2,9);  向上滑
-            mDevice.drag(x1+100,y1+(y2-y1)/2,x2+100,y1+(y2-y1)/2,9);
-            Log.d(TAG, "phone call for "+i+"times");
+            mDevice.drag(x1 + 100, y1 + (y2 - y1) / 2, x2 + 100, y1 + (y2 - y1) / 2, 9);
+            Log.d(TAG, "phone call for " + i + "times");
             /// getChild.dragTo(x-1000,1200+y,1000);
-            if (RelativeLayout.exists()==true) {
+            if (RelativeLayout.exists() == true) {
                 try {
-                    if(mDevice.isNaturalOrientation()==true) {
+                    if (mDevice.isNaturalOrientation() == true) {
                         sleep(5000);
                     }
                     UiObject endcall = mDevice.findObject((new UiSelector().resourceId("com.ibotn.phone:id/end_call_btn")));
@@ -126,12 +129,12 @@ public class honorphonecallscript {
             sleep(2000);
             //mDevice.pressBack();
             sleep(2000);
-            Log.d(TAG, "phone call checkForCondition:  "+i+"times");
+            Log.d(TAG, "phone call checkForCondition:  " + i + "times");
         }
         //重置监听器
         mDevice.resetWatcherTriggers();
         // mDevice.wait(Until.findObject(By.text("写短信")), 2000);
-        mDevice.waitForWindowUpdate("com.ibotn.phone",10000);
+        mDevice.waitForWindowUpdate("com.ibotn.phone", 10000);
         mDevice.pressBack();
         sleep(2000);
         mDevice.pressBack();
@@ -140,7 +143,7 @@ public class honorphonecallscript {
         //移除监听器
         mDevice.removeWatcher("testWatcher");
         Log.i("testWatcher", "移除监听器成功");
-        mDevice.waitForWindowUpdate("com.ibotn.phone",10000);
+        mDevice.waitForWindowUpdate("com.ibotn.phone", 10000);
         mDevice.pressBack();
         sleep(2000);
         mDevice.pressBack();

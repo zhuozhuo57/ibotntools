@@ -2,73 +2,20 @@ package com.ibotn.zhangjian.ibotntools;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextPaint;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.ibotn.zhangjian.ibotntools.camera.onRecordVideo;
-
 public class tools extends AppCompatActivity {
-    int i = 0;
     private static final String TAG = "intent";
-
+    int i = 0;
     private boolean isStart = false;
     private int count = 0;
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (isStart && count < 10000){
-            onRecordVideo(tools.this);
-            count++;
-            Log.i(TAG," count:"+count);
-        }
-    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tools);
-        Button camerarecordbutton = (Button) findViewById(R.id.stratcamerarecording);
-        camerarecordbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-       /*         int i=0;
-                   Intent intent = new Intent(tools.this,camera.class);
-                    intent.putExtra("function_type","start_video_recording");
-                    intent.addFlags(i);
-                    startActivity(intent);*/
-
-                /*for (; i < 10000; i++) {
-                    onRecordVideo(tools.this);
-                    Toast.makeText(tools.this," you  are recording for "+i+"times",Toast.LENGTH_LONG).toString();
-                    Log.i(tools.class.getSimpleName()," i:"+i);
-                }*/
-                onRecordVideo(tools.this);
-                count = 1;
-                isStart = true;
-            }
-
-        });
-        Button camerastoprecordbutton = (Button) findViewById(R.id.stopcamerarecording);
-        camerastoprecordbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               /* int j=0;
-                Intent intent=new Intent(tools.this,camera.class);
-                intent.putExtra("funchtion_type","stop_video_recording");
-                intent.addFlags(j);
-                startActivity(intent);*/
-                onStopRecord(tools.this);
-            }
-        });
-        TextView textView=(TextView)findViewById(R.id.mTextView);
-        textView.setText("test for "+count+"times");
-    }
     public static void onRecordVideo(Context context) {
         //Log.w(TAG, ">>>>>> onRecordVideo(true)");
         //Log.d(TAG, "onRecordVideo: aaaaa");
@@ -96,7 +43,58 @@ public class tools extends AppCompatActivity {
         Toast.makeText(context, "starting onStopRecord", Toast.LENGTH_LONG).toString();
 
     }
- }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isStart && count < 10000) {
+            onRecordVideo(tools.this);
+            count++;
+            Log.i(TAG, " count:" + count);
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tools);
+        Button camerarecordbutton = findViewById(R.id.stratcamerarecording);
+        camerarecordbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+       /*         int i=0;
+                   Intent intent = new Intent(tools.this,camera.class);
+                    intent.putExtra("function_type","start_video_recording");
+                    intent.addFlags(i);
+                    startActivity(intent);*/
+
+                /*for (; i < 10000; i++) {
+                    onRecordVideo(tools.this);
+                    Toast.makeText(tools.this," you  are recording for "+i+"times",Toast.LENGTH_LONG).toString();
+                    Log.i(tools.class.getSimpleName()," i:"+i);
+                }*/
+                onRecordVideo(tools.this);
+                count = 1;
+                isStart = true;
+            }
+
+        });
+        Button camerastoprecordbutton = findViewById(R.id.stopcamerarecording);
+        camerastoprecordbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* int j=0;
+                Intent intent=new Intent(tools.this,camera.class);
+                intent.putExtra("funchtion_type","stop_video_recording");
+                intent.addFlags(j);
+                startActivity(intent);*/
+                onStopRecord(tools.this);
+            }
+        });
+        TextView textView = findViewById(R.id.mTextView);
+        textView.setText("test for " + count + "times");
+    }
+}
 
 
 

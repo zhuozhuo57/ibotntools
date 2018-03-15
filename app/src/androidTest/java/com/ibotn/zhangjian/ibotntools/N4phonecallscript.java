@@ -5,12 +5,10 @@ package com.ibotn.zhangjian.ibotntools;
  */
 
 import android.app.Instrumentation;
-import android.graphics.Path;
 import android.graphics.Rect;
 import android.os.RemoteException;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
-import android.support.test.uiautomator.Direction;
 import android.support.test.uiautomator.UiCollection;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject;
@@ -25,47 +23,26 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.InstrumentationRegistry.getContext;
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
-
-import android.app.Instrumentation;
-import android.nfc.Tag;
-import android.support.test.runner.AndroidJUnit4;
-import android.support.test.uiautomator.By;
-import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject;
-import android.support.test.uiautomator.UiObject2;
-import android.support.test.uiautomator.UiObjectNotFoundException;
-import android.support.test.uiautomator.UiSelector;
-import android.support.test.uiautomator.UiWatcher;
-import android.support.test.uiautomator.Until;
-import android.util.Log;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import javax.crypto.spec.DESedeKeySpec;
-import javax.crypto.spec.GCMParameterSpec;
-
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.uiautomator.Direction.RIGHT;
 
 /**
  * Created by zhangjian on 2017/12/26.
  */
-@RunWith( AndroidJUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class N4phonecallscript {
 
-    private static final String TAG ="phonecall" ;
+    private static final String TAG = "phonecall";
     UiDevice mDevice;
     Instrumentation instrumentation;
+
     @Before
-    public void setUp () {
+    public void setUp() {
 
         instrumentation = getInstrumentation();
-        mDevice= UiDevice.getInstance(instrumentation);
+        mDevice = UiDevice.getInstance(instrumentation);
     }
+
     @Test
     public void testcase11() throws InterruptedException, UiObjectNotFoundException, RemoteException {
 
@@ -74,7 +51,7 @@ public class N4phonecallscript {
         mDevice.registerWatcher("testWatcher", new UiWatcher() {
             @Override
             public boolean checkForCondition() {
-                if(mDevice.hasObject(By.res("com.ibotn.phone", "com.ibotn.phone:id/slideView"))){
+                if (mDevice.hasObject(By.res("com.ibotn.phone", "com.ibotn.phone:id/slideView"))) {
                     slideView.swipe(RIGHT, 0.8f, 500);
                     Log.i("testWatcher", "监听器被触发了");
                     return true;
@@ -85,87 +62,47 @@ public class N4phonecallscript {
         });
         //运行用例步骤
         mDevice.pressHome();
-        mDevice.waitForWindowUpdate("com.yulong.android.launcher3",10000);
+        mDevice.waitForWindowUpdate("com.yulong.android.launcher3", 10000);
         Thread.sleep(2000);
-/*
-        UiObject2 workspace= mDevice.findObject(By.res("com.yulong.android.launcher3","com.yulong.android.launcher3:id/workspace"));
-        workspace.clickAndWait(Until.newWindow(),300);*/
-/*       UiObject2 dd= mDevice.findObject(By.res("com.yulong.android.launcher3","android.widget.TextView").text("ibotn"));
-       dd.clickAndWait(Until.newWindow(),300);*/
-       // UiObject2 ibotnUiCollection=mDevice.unfreezeRotation();new UiScrollable(new UiSelector().text("ibotn"));
-        UiObject2 ibotn=mDevice.findObject(By.text("ibotn"));
+
+        UiObject2 ibotn = mDevice.findObject(By.text("ibotn"));
         ibotn.click();
 
-        /*UiObject2 dd= mDevice.findObject(By.text("ibotn"));
-        dd.clickAndWait(Until.newWindow(),300);*/
-        mDevice.waitForWindowUpdate("com.ibotn.phone",3000);
-        int i=0;
-        for(i=0;i<10000;i++) {
-            int x1=0;
-            int x2=0;
-            int y1=0;
-            int y2=0;
+        mDevice.waitForWindowUpdate("com.ibotn.phone", 3000);
+        int i = 0;
+        for (i = 0; i < 10000; i++) {
+            int x1 = 0;
+            int x2 = 0;
+            int y1 = 0;
+            int y2 = 0;
 
-           // UiObject phonecall = mDevice.findObject((new UiSelector().resourceId("com.ibotn.phone:id/slideView")));
-            //UiObject2 phonecall=mDevice.findObject(By.res("com.ibotn.phone","com.ibotn.phone:id/slideView"));
-
-            //UiObject phonecall = new UiScrollable(new UiSelector().resourceId("com.ibotn.phone:id/slideView"));
-        /*    Rect rect=phonecall.getBounds();
-            x=rect.centerX();
-            y=rect.centerY();*/
- /*           UiScrollable listScrollable = new UiScrollable(new UiSelector().scrollable(true));
-            listScrollable.setMaxSearchSwipes(10);
-            listScrollable.scrollIntoView(new UiSelector().resourceId("com.ibotn.phone:id/slideView"));*/
-    /*    UiSelector phonecall=new UiSelector().className("android.view.View").resourceId("com.ibotn.phone:id/slideView");
-                phonecall.enabled(false);
-                phonecall.scro*/
-            //UiScrollable phonecall = new UiScrollable(new UiSelector().scrollable(false));
-            //phonecall.setMaxSearchSwipes(10);
 
             UiObject content = new UiScrollable(new UiSelector().className("android.widget.FrameLayout").resourceId("android:id/content"));
             content.exists();
-            //content.click();
             UiObject rl_fragments = new UiScrollable(new UiSelector().className("android.widget.RelativeLayout").resourceId("com.ibotn.phone:id/rl_fragments"));
             rl_fragments.exists();
-            //rl_fragments.click();
             UiObject RelativeLayout = new UiCollection(new UiSelector().className("android.widget.RelativeLayout").index(2));
             RelativeLayout.getChildCount();
-            UiObject getChild= RelativeLayout.getChild(new UiSelector().resourceId("com.ibotn.phone:id/slideView"));
+            UiObject getChild = RelativeLayout.getChild(new UiSelector().resourceId("com.ibotn.phone:id/slideView"));
             getChild.exists();
-            Rect center =getChild.getBounds();
+            Rect center = getChild.getBounds();
 /*            r.left; //矩形左上角顶点X坐标
             r.top; //矩形左上角顶点Y坐标
             r.right; //矩形右下角顶点X坐标
             r.bottom; //矩形右下角顶点Y坐标
             r.centerX(); //矩形的中心点X坐标
             r.centerY(); //矩形的中心点Y坐标*/
-            x1=center.left;
-            x2=center.right;
-            y1=center.top;
-            y2=center.bottom;
-            //mDevice.click()
-           // mDevice.drag(x1+(x2-x1)/2,y1+(y2-y1)/2+110,x2-(x2-x1)/2,y1+(y2-y1)/2,9);  向上滑
-            mDevice.drag(x1+100,y1+(y2-y1)/2,x2+100,y1+(y2-y1)/2,9);
-            Log.d(TAG, "phone call for "+i+"times");
-           /// getChild.dragTo(x-1000,1200+y,1000);
-            if (RelativeLayout.exists()==true) {
+            x1 = center.left;
+            x2 = center.right;
+            y1 = center.top;
+            y2 = center.bottom;
+            mDevice.drag(x1 + 100, y1 + (y2 - y1) / 2, x2 + 100, y1 + (y2 - y1) / 2, 9);
+            Log.d(TAG, "phone call for " + i + "times");
+            if (RelativeLayout.exists() == true) {
                 try {
-                   // phonecall.dragTo(x/2, y/2, 20);
-                  //  phonecall.drag(slideView.getVisibleCenter(),3);
-                    //phonecall.swipe(Direction.RIGHT,50);
-                    //phonecall.fling(Direction.RIGHT,50);
-                    //RelativeLayout.longClick();
-                   // RelativeLayout.dragTo(Direction.RIGHT,30);
-                   // RelativeLayout.swipeLeft(1);
-                   // RelativeLayout.swipeUp(1);
-                   // RelativeLayout.swipeRight(1);
-                    if(mDevice.isNaturalOrientation()==true) {
-                        //mDevice.setOrientationRight();
-                       // RelativeLayout.dragTo(0, 1223, 1000);
-                        //getChild.swipeRight(1);
 
-                       // getChild.dragTo(x-1000,x-100, 1);
-                        Thread.sleep(5000);
+                    if (mDevice.isNaturalOrientation() == true) {
+                        Thread.sleep(10000);
 
                     }
                     UiObject endcall = mDevice.findObject((new UiSelector().resourceId("com.ibotn.phone:id/end_call_btn")));
@@ -178,23 +115,17 @@ public class N4phonecallscript {
                 }
             }
             Thread.sleep(2000);
-            //mDevice.pressBack();
             Thread.sleep(2000);
-            Log.d(TAG, "phone call checkForCondition:  "+i+"times");
+            Log.d(TAG, "phone call checkForCondition:  " + i + "times");
         }
         //重置监听器
-        mDevice.resetWatcherTriggers();
-        // mDevice.wait(Until.findObject(By.text("写短信")), 2000);
-        mDevice.waitForWindowUpdate("com.ibotn.phone",10000);
-        mDevice.pressBack();
+        mDevice.waitForWindowUpdate("com.ibotn.phone", 10000);
         Thread.sleep(2000);
         mDevice.pressBack();
         Log.i("testWatcher", "重置监听器成功");
-
         //移除监听器
-        mDevice.removeWatcher("testWatcher");
         Log.i("testWatcher", "移除监听器成功");
-        mDevice.waitForWindowUpdate("com.ibotn.phone",10000);
+        mDevice.waitForWindowUpdate("com.ibotn.phone", 10000);
         mDevice.pressBack();
         Thread.sleep(2000);
         mDevice.pressBack();

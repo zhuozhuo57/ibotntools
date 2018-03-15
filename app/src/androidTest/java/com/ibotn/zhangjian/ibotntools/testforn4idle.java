@@ -33,7 +33,7 @@ import static android.support.test.uiautomator.Direction.RIGHT;
 
 */
 
-@RunWith( AndroidJUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class testforn4idle {
 
     private static final String TAG = "phonecall";
@@ -148,11 +148,12 @@ public class testforn4idle {
         mDevice.pressBack();
 
     }
+
     public boolean findicon() {
         int i = 0;
         for (; i < 10; i++) {
-            boolean j=false;
-            if (j!= true) {
+            boolean j = false;
+            if (j != true) {
                 UiObject2 S = mDevice.findObject(By.res("android.view.View", "com.yulong.android.launcher3:id/indicate"));
                 S.swipe(Direction.RIGHT, 1);
 

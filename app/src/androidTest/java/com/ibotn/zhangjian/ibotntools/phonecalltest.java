@@ -1,6 +1,5 @@
 package com.ibotn.zhangjian.ibotntools;
 
-import android.app.Activity;
 import android.app.Instrumentation;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
@@ -10,15 +9,11 @@ import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiWatcher;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.IOException;
-
-import static android.os.SystemClock.sleep;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 
 /**
@@ -26,46 +21,49 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
  */
 @RunWith(AndroidJUnit4.class)
 public class phonecalltest extends UiAutomatorInstrumentationTestRunner {
+    private static final String TAG = "phonecalltest";
     Instrumentation instrumentation;
-    private static final String TAG ="phonecalltest" ;
-    private  UiDevice device;
     int i;
     int j;
+    private UiDevice device;
+
     @Before
-    public void setUp () {
+    public void setUp() {
         instrumentation = getInstrumentation();
         device = UiDevice.getInstance(instrumentation);
     }
+
     @Test
-        public void testeee() throws UiObjectNotFoundException{
+    public void testeee() throws UiObjectNotFoundException {
 
-            accept_call_btn();
-            device.pressBack();
-            device.pressBack();
-            device.pressBack();
-            device.pressHome();
-          //  UiObject2 U=device.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn"));
-            accept_call_btn();
-            end_call_btn();
-        }
+        accept_call_btn();
+        device.pressBack();
+        device.pressBack();
+        device.pressBack();
+        device.pressHome();
+        //  UiObject2 U=device.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn"));
+        accept_call_btn();
+        end_call_btn();
+    }
 
-        public void accept_call_btn ()throws UiObjectNotFoundException {
-            final UiObject2 accept_call_btn = device.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn"));
-            device.registerWatcher("accept_call_btn", new UiWatcher() {
-                        @Override
-                        public boolean checkForCondition() {
+    public void accept_call_btn() throws UiObjectNotFoundException {
+        final UiObject2 accept_call_btn = device.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn"));
+        device.registerWatcher("accept_call_btn", new UiWatcher() {
+                    @Override
+                    public boolean checkForCondition() {
 
-                            if (accept_call_btn.hasObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn"))) {
-                                accept_call_btn.click();
-                                return true;
-                            }
-                            Log.d(TAG, "phone call checkForCondition: " + i + "times");
-                            i++;
+                        if (accept_call_btn.hasObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/accept_call_btn"))) {
+                            accept_call_btn.click();
                             return true;
                         }
+                        Log.d(TAG, "phone call checkForCondition: " + i + "times");
+                        i++;
+                        return true;
                     }
-            );
-        }
+                }
+        );
+    }
+
     public boolean end_call_btn() throws UiObjectNotFoundException {
         final UiObject2 end_call_btn = device.findObject(By.res("com.ibotn.ibotnphone", "com.ibotn.ibotnphone:id/end_call_btn"));
         device.registerWatcher("end_call_btn", new UiWatcher() {
