@@ -18,10 +18,10 @@ import java.util.Comparator;
 import java.util.List;
 
 /*
-*
+ *
  * Created by zhangjian on 2017/12/18.
 
-*/
+ */
 
 
 public class storagetest extends Activity {
@@ -47,11 +47,14 @@ public class storagetest extends Activity {
 
                     Log.d(TAG, "storagetest: " + i + "times");
                     filePath = "storage/sdcard/test/";
+
                     File sourcefile = new File(filePath + "sourcefile");
                     File targetFile = new File(filePath + "targetFile");
 
                     copyFile(sourcefile, targetFile);
-                    // deleteDirectory(filePath);
+                    Log.d(TAG, "copyFile: " + i + "times");
+
+                    deleteDirectory(filePath);
                     Toast.makeText(storagetest.this, "这是你第" + i + "次点击了存储测试按钮", Toast.LENGTH_LONG).toString();
                 }
             }
@@ -61,13 +64,13 @@ public class storagetest extends Activity {
     }
 
 
-/*
-*
- * 删除文件夹以及目录下的文件
- * @param   filePath 被删除目录的文件路径
- * @return  目录删除成功返回true，否则返回false
+    /*
+     *
+     * 删除文件夹以及目录下的文件
+     * @param   filePath 被删除目录的文件路径
+     * @return  目录删除成功返回true，否则返回false
 
-*/
+     */
 
     public boolean deleteDirectory(String filePath) {
         boolean flag = false;
@@ -98,13 +101,13 @@ public class storagetest extends Activity {
         return dirFile.delete();
     }
 
-/*
-*
- *  根据路径删除指定的目录或文件，无论存在与否
- *@param filePath  要删除的目录或文件
- *@return 删除成功返回 true，否则返回 false。
+    /*
+     *
+     *  根据路径删除指定的目录或文件，无论存在与否
+     *@param filePath  要删除的目录或文件
+     *@return 删除成功返回 true，否则返回 false。
 
-*/
+     */
 
     public boolean DeleteFolder(String filePath) {
         File file = new File(filePath);
@@ -163,7 +166,7 @@ public class storagetest extends Activity {
 
     public boolean copyLast6Files(String srcDir, String dstDir) {
 
-        // (new File(dstDir)).mkdir();
+        (new File(dstDir)).mkdir();
         Log.v(TAG, "" + dstDir.toString());
 
         File[] files = (new File(srcDir)).listFiles();

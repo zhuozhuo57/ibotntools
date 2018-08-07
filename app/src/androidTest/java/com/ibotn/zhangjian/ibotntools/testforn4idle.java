@@ -6,7 +6,6 @@ package com.ibotn.zhangjian.ibotntools;
 
 import android.app.Instrumentation;
 import android.graphics.Rect;
-import android.os.RemoteException;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.Direction;
@@ -28,10 +27,10 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.uiautomator.Direction.RIGHT;
 
 /*
-*
+ *
  * Created by zhangjian on 2018/1/17.
 
-*/
+ */
 
 @RunWith(AndroidJUnit4.class)
 public class testforn4idle {
@@ -48,7 +47,7 @@ public class testforn4idle {
     }
 
     @Test
-    public void testcase11() throws InterruptedException, UiObjectNotFoundException, RemoteException {
+    public void testcase11() throws InterruptedException, UiObjectNotFoundException {
 
         final UiObject2 slideView = mDevice.findObject(By.res("com.ibotn.phone", "com.ibotn.phone:id/slideView"));
         //注册监听器

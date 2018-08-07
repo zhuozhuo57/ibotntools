@@ -1,41 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ibotn.zhangjian.ibotntools.tools"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    tools:context="com.ibotn.zhangjian.ibotntools.ToolsActivity">
 
     <Button
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="60dp"
         android:id="@+id/stratcamerarecording"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="60dp"
         android:text="开始录像"
         tools:layout_editor_absoluteX="37dp"
         tools:layout_editor_absoluteY="16dp" />
 
     <Button
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="60dp"
         android:id="@+id/stopcamerarecording"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="60dp"
         android:text="停止录像"
         tools:layout_editor_absoluteX="37dp"
         tools:layout_editor_absoluteY="134dp" />
-    <TextView
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="60dp"
-        android:id="@+id/mTextView"
+
+    <Button
+        android:id="@+id/videoweb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="testing for "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="60dp"
+        android:baselineAligned="false"
+        android:text="播放清明节的故事"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="134dp" />
+
+    <Button
+        android:id="@+id/videostop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="60dp"
+        android:baselineAligned="false"
+        android:text="停止播放播放清明节的故事"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="134dp" />
+
+    <Button
+        android:id="@+id/otaupdte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="60dp"
+        android:text="OTA拷贝"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="134dp" />
+
+    <Button
+        android:id="@+id/wifitest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="158dp"
+        android:text="wifi开关测试"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="158dp" />
 
 </LinearLayout>

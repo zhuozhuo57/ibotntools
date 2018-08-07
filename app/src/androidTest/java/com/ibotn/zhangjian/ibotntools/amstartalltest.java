@@ -4,7 +4,6 @@ import android.app.Instrumentation;
 import android.os.Looper;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.util.Log;
 
 import org.junit.Before;
@@ -36,7 +35,7 @@ public class amstartalltest {
     }
 
     @Test
-    public void testsss() throws UiObjectNotFoundException, IOException, InterruptedException {
+    public void testsss() throws IOException, InterruptedException {
         mDevice.pressHome();
         int i;
         for (i = 0; i <= 1000; i++) {
@@ -72,7 +71,7 @@ public class amstartalltest {
             Log.d(TAG, "MainActivity ok");
             sleep(3000);
             //Log.d(TAG, "com.ibotn.ibotnface/.HomeActivity: "+i);
- /*sleep(3000);*/
+            /*sleep(3000);*/
 //        os.write("am start -n com.ibotn.ibotncamera/.SceneLearnActivity".getBytes());
             //Log.d(TAG, "com.ibotn.ibotncamera/.SceneLearnActivity"+i);
             /// sleep(3000);
